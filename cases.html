@@ -275,7 +275,7 @@ $(function(){
     });
 
     var search = location.search;
-    var param = search.search(/type=([^&]+)/);
+    var param = search.match(/type=([^&]+)/);
     param = param && param[1];
 
     if (param === 'ds') {
