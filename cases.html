@@ -277,6 +277,7 @@ $(function(){
     var search = location.search;
     var param = search.match(/type=([^&]+)/);
     param = param && param[1];
+    console.log(param);
 
     if (param === 'ds') {
         $('#js_anlinav .visual-ds').trigger('click');
