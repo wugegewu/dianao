@@ -92,7 +92,7 @@
                     </div>
                     <div class="follow">
                         <div class="bdsharebuttonbox"><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://ss1.baidu.com/9rA4cT8aBw9FktbgoI7O1ygwehsv/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
                     </div>
                 </div>
                 <div class="classroom">
@@ -133,8 +133,8 @@
                     </div>
                     <div class="home-case hide" id="js_anlinav">
                         <a class="bt-closed" href="javascript:void(0);"></a>
-                        <a class="visual-ds" href="javascript:void(0);"></a>
-                        <a class="visual-pm" href="javascript:void(0);"></a>
+                        <a class="visual-ds" href="cases.html?type=ds"></a>
+                        <a class="visual-pm" href="cases.html?type=pm"></a>
                     </div>
                 </div>
             </div>
@@ -165,87 +165,103 @@ $(function(){
     Com.resize();
     $(window).resize(Com.resize);
 
+    function Background() {
+        this.status = 'show';
+        this.$ele = $('#js_pageHolder .light-bg');
+    };
+    Background.prototype.show = function(){
+        this.status = 'show';
+        this.$ele.stop(true).fadeIn('fast');
+    };
+    Background.prototype.hide = function(){
+        this.status = 'hide';
+        this.$ele.stop(true).fadeOut('fast');
+    };
+    function Svg(front, bg){
+        this.status = 'hide';
+        this.$front = front;
+        this.$bg = bg;
+    }
+    Svg.prototype.show = function(){
+        this.status = 'show';
+        this.$front.stop(true).fadeIn('fast');
+        this.$bg.stop(true).fadeIn('fast');
+    };
+    Svg.prototype.hide = function(){
+        this.status = 'hide';
+        this.$front.stop(true).fadeOut('fast');
+        this.$bg.stop(true).fadeOut('fast');
+    };
+
     var svg_2_t = null;
     var svg_4_t = null;
-    var light_b = true;
+    var bg = new Background();
+    var s1 = new Svg($('#js_pageHolder .door-bg'), $('#js_introbd'));
+    var s2 = new Svg($('#js_pageHolder .tiger-bg'), $('#js_anlinav'));
 
     $('#svg_2').on('mouseover', function(){
         if (!svg_2_t) {
-            $('#js_pageHolder .light-bg').stop(true).fadeOut('fast');
-            $('#js_pageHolder .door-bg').fadeIn('fast');
-            $('#js_introbd').fadeIn('fast');
+            if (bg.status !== 'hide') {bg.hide();}
+            s1.show();
         }else{
             clearTimeout(svg_2_t);
+            svg_2_t = null;
         }
-        light_b = false;
     });
     $('#svg_2').on('mouseout', function(){
         svg_2_t = setTimeout(function(){
             svg_2_t = null;
-            if (light_b) {$('#js_pageHolder .light-bg').stop(true).fadeIn('fast');}
-            $('#js_pageHolder .light-bg').stop(true).fadeIn('fast');
-            $('#js_pageHolder .door-bg').fadeOut('fast');
-            $('#js_introbd').fadeOut('fast');
+            if (s2.status === 'hide' && bg.status !== 'show') {bg.show();}
+            s1.hide();
         }, 100);
-        light_b = true;
-    });
-    $('#svg_4').on('mouseover', function(){
-        if (!svg_4_t) {
-            $('#js_pageHolder .light-bg').stop(true).fadeOut('fast');
-            $('#js_pageHolder .tiger-bg').fadeIn('fast');
-            $('#js_anlinav').fadeIn('fast');
-        }else{
-            clearTimeout(svg_4_t);
-        }
-        light_b = false;
-    });
-    $('#svg_4').on('mouseout', function(){
-        svg_4_t = setTimeout(function(){
-            svg_4_t = null;
-            if (light_b) {$('#js_pageHolder .light-bg').stop(true).fadeIn('fast');}
-            $('#js_pageHolder .light-bg').stop(true).fadeIn('fast');
-            $('#js_pageHolder .tiger-bg').fadeOut('fast');
-            $('#js_anlinav').fadeOut('fast');
-        }, 100);
-        light_b = true;
     });
     $('#js_introbd').on('mouseover', function(){
         if (!svg_2_t) {
-            $('#js_pageHolder .light-bg').stop(true).fadeOut('fast');
-            $('#js_pageHolder .door-bg').fadeIn('fast');
-            $('#js_introbd').fadeIn('fast');
+            if (bg.status !== 'hide') {bg.hide();}
+            s1.show();
         }else{
             clearTimeout(svg_2_t);
+            svg_2_t = null;
         }
-        light_b = false;
     });
     $('#js_introbd').on('mouseout', function(){
         svg_2_t = setTimeout(function(){
             svg_2_t = null;
-            if (light_b) {$('#js_pageHolder .light-bg').stop(true).fadeIn('fast');}
-            $('#js_pageHolder .door-bg').fadeOut('fast');
-            $('#js_introbd').fadeOut('fast');
+            if (s2.status === 'hide' && bg.status !== 'show') {bg.show();}
+            s1.hide();
         }, 100);
-        light_b = true;
+    });
+    $('#svg_4').on('mouseover', function(){
+        if (!svg_4_t) {
+            if (bg.status !== 'hide') {bg.hide();}
+            s2.show();
+        }else{
+            clearTimeout(svg_4_t);
+            svg_4_t = null;
+        }
+    });
+    $('#svg_4').on('mouseout', function(){
+        svg_4_t = setTimeout(function(){
+            svg_4_t = null;
+            if (s1.status === 'hide' && bg.status !== 'show') {bg.show();}
+            s2.hide();
+        }, 100);
     });
     $('#js_anlinav').on('mouseover', function(){
         if (!svg_4_t) {
-            $('#js_pageHolder .light-bg').stop(true).fadeOut('fast');
-            $('#js_pageHolder .tiger-bg').fadeIn('fast');
-            $('#js_anlinav').fadeIn('fast');
+            if (bg.status !== 'hide') {bg.hide();}
+            s2.show();
         }else{
             clearTimeout(svg_4_t);
+            svg_4_t = null;
         }
-        light_b = false;
     });
     $('#js_anlinav').on('mouseout', function(){
         svg_4_t = setTimeout(function(){
             svg_4_t = null;
-            if (light_b) {$('#js_pageHolder .light-bg').stop(true).fadeIn('fast');}
-            $('#js_pageHolder .tiger-bg').fadeOut('fast');
-            $('#js_anlinav').fadeOut('fast');
+            if (s1.status === 'hide' && bg.status !== 'show') {bg.show();}
+            s2.hide();
         }, 100);
-        light_b = true;
     });
 });
 </script>

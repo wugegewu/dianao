@@ -92,7 +92,7 @@
                     </div>
                     <div class="follow">
                         <div class="bdsharebuttonbox"><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://ss1.baidu.com/9rA4cT8aBw9FktbgoI7O1ygwehsv/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
                     </div>
                 </div>
                 <div class="classroom">
@@ -111,7 +111,7 @@
                         <a class="visual-ds" href="javascript:void(0);"></a>
                         <a class="visual-pm" href="javascript:void(0);"></a>
                     </div>
-                    <div class="blackboard case-lists-bd" style="display:none;">
+                    <div class="blackboard case-lists-bd hide">
                         <div class="blackboard-bd">
                             <div class="case-cover">
                                 <a class="cover-img" data-case-id="0" href="javascript:void(0);"><img src="https://img.alicdn.com/bao/uploaded/i4/1971150239/TB1Wnhlc2jM8KJjSZFsXXXdZpXa_!!0-item_pic.jpg_300x300.jpg" /></a>
@@ -135,17 +135,10 @@
                             <p><strong>类别：</strong><a class="active" href="javascript:void(0);">全部</a><a href="javascript:void(0);">首页</a><a href="javascript:void(0);">详情页</a></p>
                             <p></p>
                         </div>
-                        <div class="pagenation">
-                            <a id="js_dis" class="prev" href="javascript:void(0);" disabled>&lt;</a>
-                            <a href="javascript:void(0);">1</a>
-                            <a href="javascript:void(0);">2</a>
-                            <a href="javascript:void(0);">3</a>
-                            <span class="dotted">...</span>
-                            <a href="javascript:void(0);">10</a>
-                            <a class="next" href="javascript:void(0);">&gt;</a>
+                        <div class="pager" id="js_page">
                         </div>
                     </div>
-                    <div class="case-detail-bd" style="display:none;">
+                    <div class="case-detail-bd hide">
                         <div class="img-content">
                             <img src="" />
                         </div>
@@ -169,6 +162,7 @@
     </div>
 </body>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="assets/js/jquery.twbsPagination.min.js"></script>
 <script src="assets/js/loading.js"></script>
 <script>
 var Com = {
@@ -189,17 +183,107 @@ var Com = {
         });
     }
 };
+var d = [{
+    id: 1,
+    cate: '',
+    type: '',
+    name: '',
+    img:''
+},{
+    id: 2,
+    cate: '',
+    type: '',
+    name: '',
+    img:''
+}];
+var com = {
+    d: d,
+    init: function(){
+        com.defaultOpts = {
+            visiblePages: 8,
+            startPage: 1,
+            onPageClick: function (event, page) {
+                console.info(page + ' (from options)');
+            }
+        }
+        com.$pagination = $('#js_page').twbsPagination($.extend({}, com.defaultOpts, {
+            totalPages: 35,
+        }));
+
+
+        setTimeout(function(){
+            com.pags(3);
+        }, 5000);
+    },
+    pags: function(totalPages){
+        if (!totalPages) {
+            return;
+        }
+        var currentPage = com.$pagination.twbsPagination('getCurrentPage');
+        com.$pagination.twbsPagination('destroy');
+        com.$pagination.twbsPagination($.extend({}, com.defaultOpts, {
+            totalPages: totalPages
+        }));
+    }
+}
 $(function(){
     Com.resize();
     $(window).resize(Com.resize);
 
+    $('#js_anlinav').on('click', function(e){
+        var cls;
+        var target = e.target;
+        if (target.nodeType == 1 && target.nodeName.toUpperCase() == 'A') {
+            cls = target.className;
+        }else{
+            return false;
+        }
+        switch(cls){
+            case 'bt-closed':
+                location.href = location.href.substr(0, location.href.lastIndexOf('/')) + '/index.html';
+                e.preventDefault();
+                e.stopPropagation();
+                break;
+            case 'visual-ds':
+                $(this).hide();
+                $('#js_pageHolder .tiger-bg').fadeOut('fast');
+                $('#js_pageHolder .case-lists-bd').fadeIn('fast');
+                com.init();
 
-    var dis = $('#js_dis').get(0);
-    console.log(dis.attributes);
-    for (var key in dis.attributes) {
-    console.log(key);
-    console.log(dis.attributes[key]);
+                e.preventDefault();
+                e.stopPropagation();
+                break;
+            case 'visual-pm':
+                $(this).hide();
+                $('#js_pageHolder .tiger-bg').fadeOut('fast');
+                $('#js_pageHolder .case-lists-bd').fadeIn('fast');
+                com.init();
+
+                e.preventDefault();
+                e.stopPropagation();
+                break;
+            default:
+                break;
+                e.preventDefault();
+                e.stopPropagation();
+        }
+    });
+    $('#js_pageHolder .case-lists-bd .bt-closed').on('click', function(){
+        $('#js_anlinav').show();
+        $('#js_pageHolder .case-lists-bd').fadeOut('fast');
+        $('#js_pageHolder .tiger-bg').fadeIn('fast');
+    });
+
+    var search = location.search;
+    var param = search.search(/type=([^&]+)/);
+    param = param && param[1];
+
+    if (param === 'ds') {
+        $('#js_anlinav .visual-ds').trigger('click');
+    }else if (param === 'pm') {
+        $('#js_anlinav .visual-pm').trigger('click');
     }
+
 });
 </script>
 </html>
