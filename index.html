@@ -171,11 +171,11 @@ $(function(){
     };
     Background.prototype.show = function(){
         this.status = 'show';
-        this.$ele.stop(true).fadeIn('fast');
+        this.$ele.stop(true).fadeIn(800);
     };
     Background.prototype.hide = function(){
         this.status = 'hide';
-        this.$ele.stop(true).fadeOut('fast');
+        this.$ele.stop(true).fadeOut(800);
     };
     function Svg(front, bg){
         this.status = 'hide';
@@ -184,13 +184,13 @@ $(function(){
     }
     Svg.prototype.show = function(){
         this.status = 'show';
-        this.$front.stop(true).fadeIn('fast');
-        this.$bg.stop(true).fadeIn('fast');
+        this.$front.stop(true).fadeIn(800);
+        this.$bg.stop(true).fadeIn(800);
     };
     Svg.prototype.hide = function(){
         this.status = 'hide';
-        this.$front.stop(true).fadeOut('fast');
-        this.$bg.stop(true).fadeOut('fast');
+        this.$front.stop(true).fadeOut(800);
+        this.$bg.stop(true).fadeOut(800);
     };
 
     var svg_2_t = null;
