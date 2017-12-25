@@ -152,6 +152,13 @@ var Com = {
             left: (n.w - o.w)/2 + 'px',
             top: (n.h - o.h)/2 + 'px'
         });
+
+        var ratioX = n.w/o.w;
+        var ratioY = n.h/o.h;
+        var ratio = ratioX > ratioY ? ratioX : ratioY;
+        c.children(':first').css({
+            transform: 'scale('+ ratio +')'
+        });
     }
 };
 $(function(){
