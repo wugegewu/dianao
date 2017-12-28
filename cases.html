@@ -112,34 +112,20 @@
                     </div>
                     <div class="blackboard case-lists-bd hide">
                         <div class="blackboard-bd">
-                            <div class="case-cover">
-                                <a class="cover-img" data-case-id="0" href="javascript:void(0);"><img src="https://img.alicdn.com/bao/uploaded/i4/1971150239/TB1Wnhlc2jM8KJjSZFsXXXdZpXa_!!0-item_pic.jpg_300x300.jpg" /></a>
-                                <a class="cover-img" data-case-id="0" href="javascript:void(0);"><img src="https://img.alicdn.com/bao/uploaded/i4/1971150239/TB1Wnhlc2jM8KJjSZFsXXXdZpXa_!!0-item_pic.jpg_300x300.jpg" /></a>
-                                <a class="cover-img" data-case-id="0" href="javascript:void(0);"><img src="https://img.alicdn.com/bao/uploaded/i4/1971150239/TB1Wnhlc2jM8KJjSZFsXXXdZpXa_!!0-item_pic.jpg_300x300.jpg" /></a>
-                                <a class="cover-img" data-case-id="0" href="javascript:void(0);"><img src="https://img.alicdn.com/bao/uploaded/i4/1971150239/TB1Wnhlc2jM8KJjSZFsXXXdZpXa_!!0-item_pic.jpg_300x300.jpg" /></a>
-                                <a class="cover-img" data-case-id="0" href="javascript:void(0);"><img src="https://img.alicdn.com/bao/uploaded/i4/1971150239/TB1Wnhlc2jM8KJjSZFsXXXdZpXa_!!0-item_pic.jpg_300x300.jpg" /></a>
-                                <a class="cover-img" data-case-id="0" href="javascript:void(0);"><img src="https://img.alicdn.com/bao/uploaded/i4/1971150239/TB1Wnhlc2jM8KJjSZFsXXXdZpXa_!!0-item_pic.jpg_300x300.jpg" /></a>
-                                <a class="cover-img" data-case-id="0" href="javascript:void(0);"><img src="https://img.alicdn.com/bao/uploaded/i4/1971150239/TB1Wnhlc2jM8KJjSZFsXXXdZpXa_!!0-item_pic.jpg_300x300.jpg" /></a>
-                                <a class="cover-img" data-case-id="0" href="javascript:void(0);"><img src="https://img.alicdn.com/bao/uploaded/i4/1971150239/TB1Wnhlc2jM8KJjSZFsXXXdZpXa_!!0-item_pic.jpg_300x300.jpg" /></a>
-                                <a class="cover-img" data-case-id="0" href="javascript:void(0);"><img src="https://img.alicdn.com/bao/uploaded/i4/1971150239/TB1Wnhlc2jM8KJjSZFsXXXdZpXa_!!0-item_pic.jpg_300x300.jpg" /></a>
-                                <a class="cover-img" data-case-id="0" href="javascript:void(0);"><img src="https://img.alicdn.com/bao/uploaded/i4/1971150239/TB1Wnhlc2jM8KJjSZFsXXXdZpXa_!!0-item_pic.jpg_300x300.jpg" /></a>
-                                <a class="cover-img" data-case-id="0" href="javascript:void(0);"><img src="https://img.alicdn.com/bao/uploaded/i4/1971150239/TB1Wnhlc2jM8KJjSZFsXXXdZpXa_!!0-item_pic.jpg_300x300.jpg" /></a>
-                                <a class="cover-img" data-case-id="0" href="javascript:void(0);"><img src="https://img.alicdn.com/bao/uploaded/i4/1971150239/TB1Wnhlc2jM8KJjSZFsXXXdZpXa_!!0-item_pic.jpg_300x300.jpg" /></a>
+                            <div class="case-cover" id="js_visual">
                             </div>
                         </div>
                         <s class="cl-line"></s>
                         <a class="bt-closed" href="javascript:void(0);"></a>
-                        <div class="category">
-                            <p><strong>类目：</strong><a class="active" href="javascript:void(0);">全部</a><a href="javascript:void(0);">美妆类目</a><a href="javascript:void(0);">电器类目</a><a href="javascript:void(0);">食品类目</a><a href="javascript:void(0);">母婴类目</a></p>
-                            <p><strong>类别：</strong><a class="active" href="javascript:void(0);">全部</a><a href="javascript:void(0);">首页</a><a href="javascript:void(0);">详情页</a></p>
-                            <p></p>
+                        <div class="category" id="js_filter">
+                            <p data-name="cate"><strong>类目：</strong><a class="active" href="javascript:void(0);">全部</a><a href="javascript:void(0);">美妆类目</a><a href="javascript:void(0);">电器类目</a><a href="javascript:void(0);">食品类目</a><a href="javascript:void(0);">母婴类目</a></p>
+                            <p data-name="page"><strong>类别：</strong><a class="active" href="javascript:void(0);">全部</a><a href="javascript:void(0);">首页</a><a href="javascript:void(0);">详情页</a></p>
                         </div>
                         <div class="pager" id="js_page">
                         </div>
                     </div>
-                    <div class="case-detail-bd hide">
-                        <div class="img-content">
-                            <img src="" />
+                    <div class="case-detail-bd hide" id="js_casedetail">
+                        <div class="img-content" h-model="img">
                         </div>
                         <s class="cl-line"></s>
                         <a class="bt-closed" href="javascript:void(0);"></a>
@@ -148,9 +134,9 @@
                             <a class="next"></a>
                         </div>
                         <div class="article-info">
-                            <h1>插画师/平面设计师</h1>
-                            <div class="market">LOGO &amp; VI<br />DESIGN</div>
-                            <div class="paragraph">
+                            <h1 h-model="name"></h1>
+                            <div class="market"><span h-model="type"></span><br /><span h-model="cate"></span></div>
+                            <div class="paragraph" h-model="detail">
 有着15年绘画经验的她，拥有深厚的专业功底。大学毕业于青岛大学视觉系。在大学期间荣获第三届"大学生海洋文化创意设计大赛优秀奖"及"ILEC国际公益广告节"等奖项。历任青岛市海宴集团部门设计总监；青岛末那识传媒有限公司美术总监。拥有优秀的设计创意能力的她，更被NSDC南昌设计协会评为“2016年度最佳设计师”。跨越年龄的经历和思想，使她成为年轻设计师中的佼佼者
                             </div>
                         </div>
@@ -163,6 +149,87 @@
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="assets/js/jquery.twbsPagination.min.js"></script>
 <script src="assets/js/loading.js"></script>
+<script>
+!function () {
+    function Element(classa, initData) {
+        var self = this,
+            el = self.el = document.querySelector(classa),
+            bindings = {},
+            data = self.data = {};
+
+        if (initData) {
+            for (var variable in initData) {
+                self[variable] = {
+                    value: initData[variable],
+                    els: []
+                };
+                bindings[variable] = self[variable];
+            }
+        }
+
+        /* 浏览器老，不支持[].prototype.forEach
+        $.each($('[h-model]'), function (i, markToken) {
+            var variable = markToken.getAttribute('h-model');
+            if (variable) {
+                if (typeof self[variable] === 'undefined') {
+                    self[variable] = {
+                        value: parseInt(markToken.innerText),
+                        els: []
+                    };
+                    bindings[variable] = self[variable];
+                }
+                self[variable].els.push(markToken);
+            }
+        });*/
+
+        self.el.querySelectorAll('[h-model]').forEach(function (markToken) {
+            var variable = markToken.getAttribute('h-model');
+            if (variable) {
+                if (typeof self[variable] === 'undefined') {
+                    self[variable] = {
+                        value: parseInt(markToken.innerText),
+                        els: []
+                    };
+                    bindings[variable] = self[variable];
+                }
+                self[variable].els.push(markToken);
+            }
+        });
+
+        for (var variable in bindings) {
+            bind(variable);
+        }
+
+        function bind(variable) {
+            Object.defineProperty(self, variable, {
+                set: function (newVal) {
+                    bindings[variable].value = newVal;
+                    notifySubscribers(bindings[variable]);
+                },
+                get: function () {
+                    return bindings[variable].value;
+                },
+                enumerable: true,
+                configurable: true
+            });
+        }
+        function notifySubscribers(accessor) {
+            $.each(accessor.els, function (i, tag) {
+                var $el = $(tag);
+                $el.html(accessor.value);
+                // $el.removeClass().addClass('flicker-up animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                //     $(this).removeClass();
+                // });
+            });
+        }
+
+    }
+
+    // var app = new Element('#js_datamodel');
+    window.Element = Element;
+
+}();
+</script>
 <script>
 var Com = {
     resize: function(){
@@ -196,39 +263,250 @@ var Com = {
         // });
     }
 };
-var d = [{
+var g_d = [{
     id: 1,
-    cate: '',
-    type: '',
-    name: '',
-    img:''
+    type: '电商',
+    cate: '电器类目',
+    page: '详情页',
+    name: '英德尔车载冰箱详情页设计',
+    img: 'http://img.zcool.cn/community/01976d5a322b41a80121db8070341b.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjUyNDMyOTI=.html'
 },{
     id: 2,
-    cate: '',
-    type: '',
-    name: '',
-    img:''
+    type: '电商',
+    cate: '电器类目',
+    page: '首页',
+    name: '英德尔首页设计',
+    img: 'http://img.zcool.cn/community/01d3895a32319ea80121db80e28896.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjUyNDI2NjA=.html'
+},{
+    id: 3,
+    type: '电商',
+    cate: '美妆类目',
+    page: '首页',
+    name: '澳雅婷官方首页设计',
+    img: 'http://img.zcool.cn/community/019abf5a323134a80120ba382d7a3c.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjUyNDIxMjg=.html'
+},{
+    id: 4,
+    type: '电商',
+    cate: '美妆类目',
+    page: '首页',
+    name: '水密码',
+    img: 'http://img.zcool.cn/community/0127c35a322d37a80121db8086d2f4.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjUyNDE5ODA=.html'
+},{
+    id: 5,
+    type: '电商',
+    cate: '美妆类目',
+    page: '首页',
+    name: '草木之心首页设计',
+    img: 'http://img.zcool.cn/community/01ca315a32326aa80121db80258f16.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjUyNDIwMjg=.html'
+},{
+    id: 6,
+    type: '电商',
+    cate: '美妆类目',
+    page: '详情页',
+    name: '素派详情页',
+    img: 'http://img.zcool.cn/community/01c93b5a322c4ca80120ba38f1d589.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjUyMzk1MTI=.html'
+},{
+    id: 7,
+    type: '电商',
+    cate: '电器类目',
+    page: '详情页',
+    name: '美的电器详情页',
+    img: 'http://img.zcool.cn/community/014f235a322ccaa80121db806ffa3e.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjUyMzgzODA=.html'
+},{
+    id: 8,
+    type: '电商',
+    cate: '美妆类目',
+    page: '首页',
+    name: '彩妆',
+    img: 'http://img.zcool.cn/community/01e19a5a322968a80120ba384e11ae.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjQ4MTQ1MDA=.html'
+},{
+    id: 9,
+    type: '平面',
+    cate: '食品类目',
+    page: '',
+    name: '零食礼包包装盒设计',
+    img: 'http://img.zcool.cn/community/01a3ef5a0c0db9a80121985c59bc01.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjQ4MDQ4MTI=.html'
+},{
+    id: 10,
+    type: '平面',
+    cate: '食品类目',
+    page: '',
+    name: '西北小院生态五谷杂粮包装设计',
+    img: 'http://img.zcool.cn/community/01f72b5a095b5ca80121985cfbab73.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjQ3NjQyNDQ=.html'
+},{
+    id: 11,
+    type: '电商',
+    cate: '食品类目',
+    page: '首页',
+    name: '健力多/双11预热首页',
+    img: 'http://img.zcool.cn/community/01ec4d5a32300ea80121db80ae782f.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjQ2NjAwMDA=.html'
+},{
+    id: 12,
+    type: '电商',
+    cate: '食品类目',
+    page: '首页',
+    name: '老金磨方/双11预热，正式页面',
+    img: 'http://img.zcool.cn/community/013c7b5a06a886a80121985cc14631.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjQ3Mzk0MzI=.html'
+},{
+    id: 13,
+    type: '电商',
+    cate: '美妆类目',
+    page: '首页',
+    name: '珀莱雅/双11预热首页',
+    img: 'http://img.zcool.cn/community/013f675a06b067a801204a0ee130ad.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjQ2NjkwOTI=.html'
+},{
+    id: 14,
+    type: '电商',
+    cate: '食品类目',
+    page: '首页',
+    name: '健力多/双11页面',
+    img: 'http://img.zcool.cn/community/013bdb5a06b174a80121985c2d4fe4.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjQ2Njc1OTI=.html'
+},{
+    id: 15,
+    type: '电商',
+    cate: '美妆类目',
+    page: '首页',
+    name: '素派/电商首页设计合集',
+    img: 'http://img.zcool.cn/community/017af25a322da6a80120ba3845691e.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjIyOTMwODQ=.html'
+},{
+    id: 16,
+    type: '电商',
+    cate: '美妆类目',
+    page: '首页',
+    name: '水密码/首页设计',
+    img: 'http://img.zcool.cn/community/004b0059ad0ec1a8012028a98340e1.jpg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjIyOTIyODA=.html'
+},{
+    id: 17,
+    type: '电商',
+    cate: '美妆类目',
+    page: '首页',
+    name: '水密码/插画首页设计',
+    img: 'http://img.zcool.cn/community/00cf6259ad0f27a8012028a9676c1a.jpg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjIyOTEwODQ=.html'
+},{
+    id: 18,
+    type: '电商',
+    cate: '美妆类目',
+    page: '首页',
+    name: '草木之心/天猫99大促活动首页设计',
+    img: 'http://img.zcool.cn/community/00342159ad0ff4a8012028a96ba96a.jpg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjEzNzYyNjg=.html'
+},{
+    id: 19,
+    type: '电商',
+    cate: '美妆类目',
+    page: '首页',
+    name: '草木之心/品牌页面/活动策划视觉总结',
+    img: 'http://img.zcool.cn/community/00e58759ad0fb2a801211d252c2d82.jpg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjEzNzYyOTI=.html'
+},{
+    id: 20,
+    type: '电商',
+    cate: '美妆类目',
+    page: '首页',
+    name: '修正官方旗舰店/年货节插画首页设计',
+    img: 'http://img.zcool.cn/community/01b9eb5a322e82a80121db807d252c.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjEzNzU3OTY=.html'
+},{
+    id: 21,
+    type: '电商',
+    cate: '美妆类目',
+    page: '首页',
+    name: '草木之心/插画首页设计',
+    img: 'http://img.zcool.cn/community/005cc459ad1119a801211d25b3fc35.jpg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjEzNzU4NTY=.html'
+},{
+    id: 22,
+    type: '电商',
+    cate: '美妆类目',
+    page: '首页',
+    name: '草木之心/天猫618插画首页设计',
+    img: 'http://img.zcool.cn/community/00f09f59ad11e4a801211d25f6e074.jpg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjEzNzU4OTI=.html'
+},{
+    id: 23,
+    type: '电商',
+    cate: '母婴类目',
+    page: '首页',
+    name: '汇婴美/插画首页及详情页',
+    img: 'http://img.zcool.cn/community/00581c59ad105ba801211d257341a7.jpg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjEzNzU5Njg=.html'
+},{
+    id: 24,
+    type: '电商',
+    cate: '美妆类目',
+    page: '首页',
+    name: '草木之心/插画活动首页设计',
+    img: 'http://img.zcool.cn/community/00ae7d59ad101aa801211d25973ca4.jpg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjEzNzYxMjg=.html'
+},{
+    id: 25,
+    type: '电商',
+    cate: '美妆类目',
+    page: '首页',
+    name: '爱尚宠物/插画首页设计',
+    img: 'http://img.zcool.cn/community/00088659ad12c8a801211d25c64e44.jpg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjEyNzU4NDg=.html'
+},{
+    id: 26,
+    type: '电商',
+    cate: '食品类目',
+    page: '首页',
+    name: '鲜动生活/插画首页设计',
+    img: 'http://img.zcool.cn/community/0181845a322e37a80121db80bb4831.jpeg@260w_195h_1c_1e_1o_100sh.jpg',
+    href: 'http://www.zcool.com.cn/work/ZMjEyNzU1MjQ=.html'
 }];
 var com = {
-    d: d,
+    d: g_d,
+    current: 1,
     init: function(){
         com.defaultOpts = {
             visiblePages: 8,
             startPage: 1,
             onPageClick: function (event, page) {
-                console.info(page + ' (from options)');
+                $.showLoading('加载中...');
+                setTimeout(function(){
+                    com.current = page;
+                    com.visual();
+                    $.hideLoading();
+                }, Math.random()*400 + 400);
             }
         }
         com.$pagination = $('#js_page').twbsPagination($.extend({}, com.defaultOpts, {
-            totalPages: 35,
+            totalPages: com.getPage(),
         }));
 
-
-        setTimeout(function(){
-            com.pags(3);
-        }, 5000);
+        $('#js_filter').on('click', 'a', function(e){
+            $(this).addClass('active').siblings().removeClass('active');
+            com.d = com.collect;
+            $('#js_filter a.active').each(function(){
+                var key = $(this).html();
+                var name = $(this).parent().attr('data-name');
+                if (key !== '全部' && key !== '') {
+                    com.filterData(name, key);
+                }
+            });
+            com.updatePage();
+        });
     },
     pags: function(totalPages){
+        totalPages = totalPages<1?1:totalPages;
         if (!totalPages) {
             return;
         }
@@ -237,12 +515,58 @@ var com = {
         com.$pagination.twbsPagination($.extend({}, com.defaultOpts, {
             totalPages: totalPages
         }));
+    },
+    getPage: function(){
+        var numb = 6;
+        return Math.ceil(com.d.length/numb);
+    },
+    resetFilter: function(){
+        $('#js_filter p').each(function(){
+            $(this).find('a:first').addClass('active').siblings().removeClass('active');
+        });
+    },
+    filterData: function(key, value){
+        com.d = com.d.filter(function(v){
+            return v[key] == value;
+        });
+    },
+    updatePage: function(){
+        com.pags(com.getPage());
+    },
+    visual: function(){
+        var numb = 6;
+        var c = com.current;
+        var ary = com.d.slice((c - 1)*numb, c*numb);
+        var temp = '';
+        ary.forEach(function(d){
+            temp += '<a class="cover-img" href="'+ d.href +'" target="_blank" data-case-id="'+ d.id +'" href="javascript:void(0);" style="background:url('+ d.img +') no-repeat;background-size:cover;"></a>';
+        });
+        $('#js_visual').html(temp);
+    },
+    showType: function(name){
+        com.resetFilter();
+        com.d = g_d;
+        switch(name){
+            case 'ds':
+                com.filterData('type', '电商');
+                break;
+            case 'pm':
+                com.filterData('type', '平面');
+                break;
+            default:
+                com.filterData('type', '电商');
+                break;
+        }
+        com.updatePage();
+        com.collect = com.d;
     }
 }
+
 $(function(){
     Com.resize();
     $(window).resize(Com.resize);
 
+    com.init();
     $('#js_anlinav').on('click', function(e){
         var cls;
         var target = e.target;
@@ -261,7 +585,7 @@ $(function(){
                 $(this).hide();
                 $('#js_pageHolder .tiger-bg').fadeOut('fast');
                 $('#js_pageHolder .case-lists-bd').fadeIn('fast');
-                com.init();
+                com.showType('ds');
 
                 e.preventDefault();
                 e.stopPropagation();
@@ -270,7 +594,7 @@ $(function(){
                 $(this).hide();
                 $('#js_pageHolder .tiger-bg').fadeOut('fast');
                 $('#js_pageHolder .case-lists-bd').fadeIn('fast');
-                com.init();
+                com.showType('pm');
 
                 e.preventDefault();
                 e.stopPropagation();
@@ -285,6 +609,34 @@ $(function(){
         $('#js_anlinav').show();
         $('#js_pageHolder .case-lists-bd').fadeOut('fast');
         $('#js_pageHolder .tiger-bg').fadeIn('fast');
+    });
+
+    /*
+    var $ele = new Element('#js_casedetail');
+    $('#js_visual').on('click', 'a', function(e){
+        var caseid = $(this).attr('data-case-id');
+        var c = g_d[caseid];
+
+        $.showLoading('加载中...');
+        if (c) {
+            $ele.img = '<img src="'+ c.img +'" />';
+            $ele.name = c.name;
+            $ele.type = c.type;
+            $ele.cate = c.cate;
+        }
+        setTimeout(function(){
+            $('#js_pageHolder .case-lists-bd').fadeOut('fast');
+            $('#js_casedetail').fadeIn('fast');
+
+            $.hideLoading();
+        }, Math.random()*400 + 400);
+        e.preventDefault();
+        e.stopPropagation();
+    });
+    */
+    $('#js_casedetail .bt-closed').on('click', function(){
+        $('#js_casedetail').fadeOut('fast');
+        $('#js_pageHolder .case-lists-bd').fadeIn('fast');
     });
 
     var search = location.search;

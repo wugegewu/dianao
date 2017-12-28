@@ -103,6 +103,7 @@
         <div class="content-wrap">
             <div class="rt-section" id="js_pageHolder">
                 <div class="rt-container">
+                    <a id="js_bgm" href="javascript:void(0)" class="music-circle hide"></a>
                     <div class="dark-bg"></div>
                     <div class="light-bg"></div>
                     <div class="tiger-bg hide"></div>
@@ -172,6 +173,14 @@ var Com = {
         // c.children(':first').css({
         //     transform: 'scale('+ ratio +')'
         // });
+
+        // bgm background music
+        if (n.w < o.w) {
+            $('#js_bgm').css({right:(o.w - n.w)/2 + 30 + 'px'});
+        }
+        if (n.h < o.h) {
+            $('#js_bgm').css({top:(o.h - n.h)/2 + 30 + 'px'});
+        }
     }
 };
 $(function(){
@@ -275,6 +284,31 @@ $(function(){
             if (s1.status === 'hide' && bg.status !== 'show') {bg.show();}
             s2.hide();
         }, 100);
+    });
+
+
+    var audio = null;
+    if(document.createElement("audio").canPlayType){
+        audio = document.createElement("audio");
+        audio.src = "assets/images/bgmusic.mp3";
+        audio.autoplay = 'autoplay';
+        audio.loop = false;
+        $('#js_bgm').show().addClass('play');
+    }
+    $('#js_bgm').on('click', function(){
+        if(audio.paused){
+            audio.play();
+            $(this).addClass('play');
+        }else{
+            audio.pause();
+            $(this).removeClass('play');
+        }
+    });
+    $(audio).on('ended', function(e){
+        $('#js_bgm').removeClass('play');
+        setTimeout(function(){
+            $('#js_bgm').trigger('click');
+        },120000);
     });
 });
 </script>
