@@ -228,6 +228,77 @@
     window.Element = Element;
 
 }();
+function request(url, callback, charset, crossorigin) {
+    var head = document.head || document.getElementsByTagName("head")[0] || document.documentElement;
+    var baseElement = head.getElementsByTagName("base")[0];
+
+    var IS_CSS_RE = /\.css(?:\?|$)/i;
+    var currentlyAddingScript;
+
+    var isCSS = IS_CSS_RE.test(url);
+    var node = document.createElement(isCSS ? "link": "script");
+
+    if (charset) {
+        node.charset = charset;
+    }
+
+    // crossorigin default value is `false`.
+    if (!(Object.prototype.toString.call(crossorigin) == '[object Undefined]')) {
+        node.setAttribute("crossorigin", crossorigin);
+    }
+
+    var supportOnload = "onload" in node;
+    if (supportOnload) {
+        node.onload = function(){
+            callback && callback.call(window);
+            if (!isCSS) {
+                head.removeChild(node);
+            }
+            
+            node.onload = null;
+            node = null;
+        };
+        node.onerror = function() {
+            callback && callback.call(window);
+            if (!isCSS) {
+                head.removeChild(node);
+            }
+
+            node.onerror = null;
+            node = null;
+        }
+    } else {
+        node.onreadystatechange = function() {
+            if (/loaded|complete/.test(node.readyState)) {
+                callback && callback.call(window);
+                if (!isCSS) {
+                    head.removeChild(node);
+                }
+
+                node.onreadystatechange = null;
+                node = null;
+            }
+        }
+    }
+
+    if (isCSS) {
+        node.rel = "stylesheet";
+        node.href = url;
+    } else {
+        node.async = true;
+        node.src = url;
+    }
+
+    // For some cache cases in IE 6-8, the script executes IMMEDIATELY after
+    // the end of the insert execution, so use `currentlyAddingScript` to
+    // hold current node, for deriving url in `define` call
+    currentlyAddingScript = node;
+
+    // ref: #185 & http://dev.jquery.com/ticket/2709
+    baseElement ? head.insertBefore(node, baseElement) : head.appendChild(node);
+
+    currentlyAddingScript = null;
+}
 </script>
 <script>
 var Com = {
@@ -274,6 +345,7 @@ var Com = {
 
 var g_d;
 var com = {
+    first: false, // 控制刚加载的时候，不显示Loading
     d: g_d,
     current: 1,
     init: function(){
@@ -281,14 +353,15 @@ var com = {
             visiblePages: 8,
             startPage: 1,
             onPageClick: function (event, page) {
-                $.showLoading('加载中...');
+                if (!com.first) {$.showLoading('加载中...');}else{com.first = !com.first;}
                 setTimeout(function(){
                     com.current = page;
                     com.visual();
-                    $.hideLoading();
+                    if (!com.first) {$.hideLoading();}
                 }, Math.random()*400 + 400);
             }
         }
+        com.first = true;
         com.$pagination = $('#js_page').twbsPagination($.extend({}, com.defaultOpts, {
             totalPages: com.getPage(),
         }));
@@ -388,6 +461,7 @@ $(function(){
         success: function(data){
             g_d = com.d = data.caser;
             com.init();
+            parseSearch();
         }
     });
     $('#js_anlinav').on('click', function(e){
@@ -485,14 +559,18 @@ $(function(){
         }
     });
 
-    var search = location.search;
-    var param = search.match(/type=([^&]+)/);
-    param = param && param[1];
+    function parseSearch(){
+        var search = location.search;
+        var param = search.match(/type=([^&]+)/);
+        param = param && param[1];
 
-    if (param === 'ds') {
-        $('#js_anlinav .visual-ds').trigger('click');
-    }else if (param === 'pm') {
-        $('#js_anlinav .visual-pm').trigger('click');
+        if (param === 'ds') {
+            $('#js_anlinav .visual-ds').trigger('click');
+        }else if (param === 'pm') {
+            $('#js_anlinav .visual-pm').trigger('click');
+        }else if (param === 'edit') {
+            backstage();
+        }
     }
 
     var audio = null;
@@ -519,5 +597,29 @@ $(function(){
         },120000);
     });
 });
+</script>
+<script>
+function createEvt(obj){
+    var evt = document.createEvent('MouseEvents');
+    evt.initEvent("click", true, true);
+    obj.dispatchEvent(evt);
+}
+/**
+ * name: 文件名
+ * data: 字符串
+ */
+function exportRaw(name, data) {
+    var urlObject = window.URL || window.webkitURL || window;
+    var export_blob = new Blob([data]);
+    var save_link = document.createElementNS("http://www.w3.org/1999/xhtml", "a");
+    save_link.href = urlObject.createObjectURL(export_blob);
+    save_link.download = name;
+    createEvt(save_link);
+}
+function backstage() {
+    request('https://cdn.bootcss.com/vue/2.5.13/vue.min.js', function(){
+        exportRaw('cases.json', JSON.stringify({caser:g_d}));
+    });
+}
 </script>
 </html>
