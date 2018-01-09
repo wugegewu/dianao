@@ -319,6 +319,7 @@ var Com = {
             top: (n.h - o.h)/2 + 'px'
         });
 
+        // 屏幕比内容大，让整体内容居中
         var aside = $('.wrapper>.side-wrap');
         if (n.w > o.w) {
             aside.css({left: (n.w - o.w)/2 + 'px'});
@@ -339,6 +340,26 @@ var Com = {
         }
         if (n.h < o.h) {
             $('#js_bgm').css({top:(o.h - n.h)/2 + 30 + 'px'});
+        }
+    },
+    closeBtnPos: function(){
+        var c = $('#js_pageHolder');
+        var o = {
+            w: 1855,
+            h: 1080
+        };
+        var n = {
+            w: c.width(),
+            h: c.height()
+        }
+
+        // detail close button
+        if (n.h < o.h) {
+            var cbt = 70 - (o.h - n.h)/2;
+            cbt = cbt >= 30 ? 0 : 30 - cbt;
+            $('#js_casedetail .cl-line').css('transform', 'translate(0,'+cbt+'px)');
+            $('#js_casedetail .bt-closed').css('transform', 'translate(0,'+cbt+'px)');
+            $('#js_casedetail .bt-carousel').css('transform', 'translate(0,'+cbt+'px)');
         }
     }
 };
@@ -525,8 +546,10 @@ $(function(){
         }
         setTimeout(function(){
             $('#js_pageHolder .case-lists-bd').fadeOut('fast');
-            $('#js_casedetail').fadeIn('fast');
-            $.hideLoading();
+            $('#js_casedetail').fadeIn('fast', function(){
+                Com.closeBtnPos();
+                $.hideLoading();
+            });
         }, Math.random()*400 + 400);
         e.preventDefault();
         e.stopPropagation();
