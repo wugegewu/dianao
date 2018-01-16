@@ -502,6 +502,7 @@ $(function(){
                 break;
             case 'visual-ds':
                 $(this).hide();
+                $('#js_filter p[data-name="page"]').show();
                 $('#js_pageHolder .tiger-bg').fadeOut('fast');
                 $('#js_pageHolder .case-lists-bd').fadeIn('fast');
                 com.showType('ds');
@@ -511,6 +512,7 @@ $(function(){
                 break;
             case 'visual-pm':
                 $(this).hide();
+                $('#js_filter p[data-name="page"]').hide();
                 $('#js_pageHolder .tiger-bg').fadeOut('fast');
                 $('#js_pageHolder .case-lists-bd').fadeIn('fast');
                 com.showType('pm');
